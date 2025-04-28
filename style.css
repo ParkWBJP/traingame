@@ -307,3 +307,85 @@ button:hover {
     background-color: #808080;
     opacity: 0.8;
 }
+
+.correct-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.correct-popup {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    animation: popIn 0.5s ease-out;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border: 4px solid #FFD700;
+    max-width: 80%;
+    width: 400px;
+}
+
+.correct-popup h2 {
+    color: #FFD700;
+    font-size: 2em;
+    margin: 0 0 20px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.correct-popup img {
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
+}
+
+.correct-popup button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.2s;
+}
+
+.correct-popup button:hover {
+    transform: scale(1.1);
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FFD700;
+    animation: confetti 1s ease-out forwards;
+}
+
+@keyframes confetti {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+    }
+}

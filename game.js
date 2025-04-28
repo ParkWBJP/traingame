@@ -109,7 +109,7 @@ function showTargetPopup(familyMember) {
     overlay.appendChild(popup);
     
     document.body.appendChild(overlay);
-
+    
     // 효과음 미리 로드
     popupSound.load();
     
@@ -126,6 +126,52 @@ function showTargetPopup(familyMember) {
     });
 }
 
+// 정답 팝업 표시 함수
+function showCorrectPopup() {
+    const overlay = document.createElement('div');
+    overlay.className = 'correct-popup-overlay';
+    
+    const popup = document.createElement('div');
+    popup.className = 'correct-popup';
+    
+    const title = document.createElement('h2');
+    title.textContent = '정답입니다! 🎉';
+    
+    const img = document.createElement('img');
+    img.src = currentTarget.image;
+    img.alt = currentTarget.name;
+    
+    const message = document.createElement('p');
+    message.textContent = `${currentTarget.name}를(을) 찾았어요!`;
+    
+    const button = document.createElement('button');
+    button.textContent = '다음 문제 풀기';
+    
+    popup.appendChild(title);
+    popup.appendChild(img);
+    popup.appendChild(message);
+    popup.appendChild(button);
+    overlay.appendChild(popup);
+    
+    // 축하 효과 (색종이)
+    for(let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+        confetti.style.background = ['#FFD700', '#FF69B4', '#4CAF50', '#1E90FF'][Math.floor(Math.random() * 4)];
+        overlay.appendChild(confetti);
+    }
+    
+    document.body.appendChild(overlay);
+    
+    // 클릭하면 팝업 닫고 다음 게임 시작
+    button.addEventListener('click', () => {
+        document.body.removeChild(overlay);
+        initializeGame();
+    });
+}
+
 // 터널 클릭 처리
 function handleTunnelClick(event) {
     const tunnel = event.currentTarget;
@@ -136,7 +182,7 @@ function handleTunnelClick(event) {
     // 사운드 재생 (프리로드된 오디오 사용)
     const audio = audioPool[tunnel.dataset.name];
     if (audio) {
-        audio.currentTime = 0; // 재생 위치 초기화
+        audio.currentTime = 0;
         audio.play();
     }
     
@@ -145,9 +191,8 @@ function handleTunnelClick(event) {
         correctSound.currentTime = 0;
         correctSound.play();
         setTimeout(() => {
-            alert('정답입니다! 🎉');
-            initializeGame();
-        }, 1000);
+            showCorrectPopup();
+        }, 500);
     } else {
         tunnel.classList.add('wrong');
         wrongSound.currentTime = 0;
