@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리 가족 기차 찾기 게임</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <div id="game-screen">
+            <h1>🚂 우리 가족 기차 찾기 게임 🚂</h1>
+            <div id="find-target-message"></div>
+            <div class="train-container">
+                <!-- 터널들은 JavaScript로 동적 생성됩니다 -->
+            </div>
+            <button id="restart-button">다시 시작하기</button>
+            <button id="bgm-toggle" class="sound-button">🔊</button>
+        </div>
+    </div>
+    <audio id="click-sound"></audio>
+    <audio id="bgm" loop>
+        <source src="./sounds/bgm.mp3" type="audio/mp3">
+    </audio>
+    <audio id="correct-sound">
+        <source src="./sounds/correct.mp3" type="audio/mp3">
+    </audio>
+    <audio id="wrong-sound">
+        <source src="./sounds/wrong.mp3" type="audio/mp3">
+    </audio>
+    <script src="game.js"></script>
+</body>
+</html>
